@@ -1,0 +1,167 @@
+Warning: Using a password on the command line interface can be insecure.
+ERROR 1451 (23000) at line 2: Cannot delete or update a parent row: a foreign key constraint fails (`btildenassign2db`.`hospital`, CONSTRAINT `hospital_ibfk_1` FOREIGN KEY (`licno`) REFERENCES `doctor` (`licno`))
+--------------
+DELETE FROM doctor WHERE licdate < "1965-01-01"
+--------------
+
+--------------
+DROP VIEW IF EXISTS view1
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+--------------
+DROP VIEW IF EXISTS view2
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+--------------
+DROP VIEW IF EXISTS view3
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+--------------
+DROP VIEW IF EXISTS view4
+--------------
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+--------------
+CREATE VIEW view1 AS SELECT licno, name AS hospitalName FROM hospital WHERE headstart > "1995-12-31"
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE VIEW view2 AS SELECT doctor.lastname AS drlastname, view1.licno, view1.hospitalName FROM doctor, view1 WHERE doctor.licno = view1.licno
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE VIEW view3 AS SELECT doctorpatient.ohtp, view2.drlastname, view2.licno, view2.hospitalName FROM doctorpatient, view2 WHERE doctorpatient.licno = view2.licno
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE VIEW view4 AS SELECT patient.firstname AS patientfirstname, view3.drlastname, view3.licno, view3.hospitalName FROM patient, view3 WHERE view3.ohtp = patient.ohtp
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+SELECT * FROM view4
+--------------
+
++------------------+------------+-------+--------------+
+| patientfirstname | drlastname | licno | hospitalName |
++------------------+------------+-------+--------------+
+| Bill             | Shabado    | GD56  | St. Joseph   |
+| Colleen          | Shabado    | GD56  | St. Joseph   |
+| Scotty           | Shabado    | GD56  | St. Joseph   |
++------------------+------------+-------+--------------+
+3 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | BBC  |
+| HT45  | Ross      | Clooney    | Surgeon      | 1987-06-27 | DDE  |
+| JK78  | Mandy     | Webster    | Surgeon      | 1990-08-08 | BBC  |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | BBC  |
+| SE66  | Colleen   | Aziz       | Surgeon      | 1989-08-24 | ABC  |
+| WW55  | Ben       | Carson     | Surgeon      | 1977-04-28 | ABC  |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | DDE  |
++-------+-----------+------------+--------------+------------+------+
+7 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctorpatient
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 333444555 | GD56  |
+| 667766777 | GD56  |
+| 111222111 | HT45  |
+| 444555666 | HT45  |
+| 667766777 | HT45  |
+| 111222333 | JK78  |
+| 444555666 | JK78  |
+| 667766777 | JK78  |
+| 111222333 | SE66  |
+| 123456789 | WW55  |
++-----------+-------+
+11 rows in set (0.00 sec)
+
+--------------
+DELETE FROM doctor WHERE lastname = "Clooney"
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | BBC  |
+| JK78  | Mandy     | Webster    | Surgeon      | 1990-08-08 | BBC  |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | BBC  |
+| SE66  | Colleen   | Aziz       | Surgeon      | 1989-08-24 | ABC  |
+| WW55  | Ben       | Carson     | Surgeon      | 1977-04-28 | ABC  |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | DDE  |
++-------+-----------+------------+--------------+------------+------+
+6 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctorpatient
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 333444555 | GD56  |
+| 667766777 | GD56  |
+| 111222333 | JK78  |
+| 444555666 | JK78  |
+| 667766777 | JK78  |
+| 111222333 | SE66  |
+| 123456789 | WW55  |
++-----------+-------+
+8 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | BBC  |
+| JK78  | Mandy     | Webster    | Surgeon      | 1990-08-08 | BBC  |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | BBC  |
+| SE66  | Colleen   | Aziz       | Surgeon      | 1989-08-24 | ABC  |
+| WW55  | Ben       | Carson     | Surgeon      | 1977-04-28 | ABC  |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | DDE  |
++-------+-----------+------------+--------------+------------+------+
+6 rows in set (0.00 sec)
+
+ERROR 1451 (23000) at line 20: Cannot delete or update a parent row: a foreign key constraint fails (`btildenassign2db`.`hospital`, CONSTRAINT `hospital_ibfk_1` FOREIGN KEY (`licno`) REFERENCES `doctor` (`licno`))
+--------------
+DELETE FROM doctor WHERE specialty = "Surgeon"
+--------------
+
+Bye

@@ -1,0 +1,27 @@
+USE btildenassign2db;
+-- 1
+SELECT lastname FROM patient;
+-- 2
+SELECT DISTINCT lastname FROM patient;
+-- 3
+SELECT * FROM doctor ORDER BY lastname ASC;
+-- 4
+SELECT name, code FROM hospital WHERE (beds > 1500);
+-- 5
+SELECT lastname, firstname FROM doctor WHERE doctor.code = (SELECT code FROM hospital WHERE name = "St. Joseph");
+-- 6
+SELECT firstname, lastname FROM patient WHERE lastname LIKE 'G%';
+-- 7
+SELECT firstname, lastname FROM patient WHERE ohtp in (SELECT ohtp FROM doctorpatient WHERE licno = (SELECT licno FROM doctor WHERE lastname = "Clooney"));
+-- 8
+SELECT name, city, doctor.lastname FROM hospital, doctor WHERE hospital.licno = doctor.licno;
+-- 9
+SELECT SUM(beds) AS "Total Number of Beds" FROM hospital;
+-- 10
+SELECT patient.firstname, doctor.firstname FROM patient, doctor WHERE (ohtp, licno) in (SELECT ohtp, licno FROM doctorpatient WHERE licno in (SELECT licno FROM hospital));
+-- 11
+SELECT lastname, firstname FROM doctor WHERE (doctor.specialty = "Surgeon" AND doctor.code in (SELECT code FROM hospital WHERE name = "Victoria"));
+-- 12
+SELECT firstname FROM doctor WHERE NOT EXISTS (SELECT * FROM doctorpatient WHERE doctorpatient.licno = doctor.licno);
+-- 11
+SELECT lastname, firstname FROM doctor WHERE licno in (SELECT licno FROM doctorpatient GROUP BY licno HAVING COUNT(ohtp) > 1);

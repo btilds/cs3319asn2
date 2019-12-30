@@ -1,0 +1,21 @@
+USE btildenassign2db;
+DELETE FROM doctor WHERE licdate < "1965-01-01";
+-- Above delete will cause an error because both doctors who have a licence date before that time are head doctors
+-- Drop views if they exists so we can recreate them
+DROP VIEW IF EXISTS view1;
+DROP VIEW IF EXISTS view2;
+DROP VIEW IF EXISTS view3;
+DROP VIEW IF EXISTS view4;
+CREATE VIEW view1 AS SELECT licno, name AS hospitalName FROM hospital WHERE headstart > "1995-12-31";
+CREATE VIEW view2 AS SELECT doctor.lastname AS drlastname, view1.licno, view1.hospitalName FROM doctor, view1 WHERE doctor.licno = view1.licno;
+CREATE VIEW view3 AS SELECT doctorpatient.ohtp, view2.drlastname, view2.licno, view2.hospitalName FROM doctorpatient, view2 WHERE doctorpatient.licno = view2.licno; 
+CREATE VIEW view4 AS SELECT patient.firstname AS patientfirstname, view3.drlastname, view3.licno, view3.hospitalName FROM patient, view3 WHERE view3.ohtp = patient.ohtp;
+SELECT * FROM view4;
+SELECT * FROM doctor;
+SELECT * FROM doctorpatient;
+DELETE FROM doctor WHERE lastname = "Clooney";
+SELECT * FROM doctor;
+SELECT * FROM doctorpatient;
+SELECT * FROM doctor;
+DELETE FROM doctor WHERE specialty = "Surgeon";
+-- These rows were not deleted because one of the doctors who is a surgeon is the head of a hospital

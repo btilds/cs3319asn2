@@ -1,0 +1,693 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+DELETE FROM patient
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DELETE FROM doctor
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT * FROM patient
+--------------
+
+Empty set (0.00 sec)
+
+--------------
+LOAD DATA LOCAL INFILE 'loaddatafall2019.txt' INTO TABLE patient FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+--------------
+
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Deleted: 0  Skipped: 0  Warnings: 0
+
+--------------
+SELECT * FROM patient
+--------------
+
++-----------+-----------+----------+
+| ohtp      | firstname | lastname |
++-----------+-----------+----------+
+| 110112113 | Bill      | Gellar   |
+| 111222111 | Suzi      | Bing     |
+| 111222333 | Jon       | Green    |
+| 333444555 | Colleen   | Gellar   |
+| 444555666 | Sean      | Gellar   |
+| 667766777 | Scotty    | Bing     |
++-----------+-----------+----------+
+6 rows in set (0.00 sec)
+
+--------------
+INSERT INTO patient VALUES (123456789, "Ben", "Tilden")
+--------------
+
+Query OK, 1 row affected (0.02 sec)
+
+--------------
+SELECT * FROM patient
+--------------
+
++-----------+-----------+----------+
+| ohtp      | firstname | lastname |
++-----------+-----------+----------+
+| 110112113 | Bill      | Gellar   |
+| 111222111 | Suzi      | Bing     |
+| 111222333 | Jon       | Green    |
+| 123456789 | Ben       | Tilden   |
+| 333444555 | Colleen   | Gellar   |
+| 444555666 | Sean      | Gellar   |
+| 667766777 | Scotty    | Bing     |
++-----------+-----------+----------+
+7 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
+Empty set (0.00 sec)
+
+--------------
+INSERT INTO doctor VALUES ("RD34", "Bernie", "Kavorikian", "Urologist", "1980-09-08", NULL)
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+-----------+------------+------+
+| licno | firstname | lastname   | specialty | licdate    | code |
++-------+-----------+------------+-----------+------------+------+
+| RD34  | Bernie    | Kavorikian | Urologist | 1980-09-08 | NULL |
++-------+-----------+------------+-----------+------------+------+
+1 row in set (0.00 sec)
+
+--------------
+INSERT INTO doctor VALUES ("GD56", "Joey", "Shabado", "Podiatrist", "1960-06-24", NULL)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+------------+------------+------+
+| licno | firstname | lastname   | specialty  | licdate    | code |
++-------+-----------+------------+------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist | 1960-06-24 | NULL |
+| RD34  | Bernie    | Kavorikian | Urologist  | 1980-09-08 | NULL |
++-------+-----------+------------+------------+------------+------+
+2 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctor VALUES ("HT45", "Ross", "Clooney", "Surgeon", "1987-06-27", NULL)
+--------------
+
+Query OK, 1 row affected (0.20 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+------------+------------+------+
+| licno | firstname | lastname   | specialty  | licdate    | code |
++-------+-----------+------------+------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist | 1960-06-24 | NULL |
+| HT45  | Ross      | Clooney    | Surgeon    | 1987-06-27 | NULL |
+| RD34  | Bernie    | Kavorikian | Urologist  | 1980-09-08 | NULL |
++-------+-----------+------------+------------+------------+------+
+3 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctor VALUES ("YT67", "Ben", "Spock", "Pediatrician", "1955-02-20", NULL)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | NULL |
+| HT45  | Ross      | Clooney    | Surgeon      | 1987-06-27 | NULL |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | NULL |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | NULL |
++-------+-----------+------------+--------------+------------+------+
+4 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctor VALUES ("JK78", "Mandy", "Webster", "Surgeon", "1990-08-08", NULL)
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | NULL |
+| HT45  | Ross      | Clooney    | Surgeon      | 1987-06-27 | NULL |
+| JK78  | Mandy     | Webster    | Surgeon      | 1990-08-08 | NULL |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | NULL |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | NULL |
++-------+-----------+------------+--------------+------------+------+
+5 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctor VALUES ("SE66", "Colleen", "Aziz", "Surgeon", "1989-08-24", NULL)
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | NULL |
+| HT45  | Ross      | Clooney    | Surgeon      | 1987-06-27 | NULL |
+| JK78  | Mandy     | Webster    | Surgeon      | 1990-08-08 | NULL |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | NULL |
+| SE66  | Colleen   | Aziz       | Surgeon      | 1989-08-24 | NULL |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | NULL |
++-------+-----------+------------+--------------+------------+------+
+6 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctor VALUES ("WW55", "Ben", "Carson", "Surgeon", "1977-04-28", NULL)
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | NULL |
+| HT45  | Ross      | Clooney    | Surgeon      | 1987-06-27 | NULL |
+| JK78  | Mandy     | Webster    | Surgeon      | 1990-08-08 | NULL |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | NULL |
+| SE66  | Colleen   | Aziz       | Surgeon      | 1989-08-24 | NULL |
+| WW55  | Ben       | Carson     | Surgeon      | 1977-04-28 | NULL |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | NULL |
++-------+-----------+------------+--------------+------------+------+
+7 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM hospital
+--------------
+
+Empty set (0.00 sec)
+
+--------------
+INSERT INTO hospital VALUES ("BBC", "St. Joseph", "London", "On", 1000, NULL, NULL)
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM hospital
+--------------
+
++------+------------+--------+----------+------+-------+-----------+
+| code | name       | city   | province | beds | licno | headstart |
++------+------------+--------+----------+------+-------+-----------+
+| BBC  | St. Joseph | London | On       | 1000 | NULL  | NULL      |
++------+------------+--------+----------+------+-------+-----------+
+1 row in set (0.00 sec)
+
+--------------
+INSERT INTO hospital VALUES ("ABC", "Victoria", "London", "On", 1600, NULL, NULL)
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM hospital
+--------------
+
++------+------------+--------+----------+------+-------+-----------+
+| code | name       | city   | province | beds | licno | headstart |
++------+------------+--------+----------+------+-------+-----------+
+| ABC  | Victoria   | London | On       | 1600 | NULL  | NULL      |
+| BBC  | St. Joseph | London | On       | 1000 | NULL  | NULL      |
++------+------------+--------+----------+------+-------+-----------+
+2 rows in set (0.00 sec)
+
+--------------
+INSERT INTO hospital VALUES ("DDE", "Victoria", "Victoria", "BC", 1200, NULL, NULL)
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM hospital
+--------------
+
++------+------------+----------+----------+------+-------+-----------+
+| code | name       | city     | province | beds | licno | headstart |
++------+------------+----------+----------+------+-------+-----------+
+| ABC  | Victoria   | London   | On       | 1600 | NULL  | NULL      |
+| BBC  | St. Joseph | London   | On       | 1000 | NULL  | NULL      |
+| DDE  | Victoria   | Victoria | BC       | 1200 | NULL  | NULL      |
++------+------------+----------+----------+------+-------+-----------+
+3 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
+Empty set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (110112113, "GD56")
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
++-----------+-------+
+1 row in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (444555666, "HT45")
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 444555666 | HT45  |
++-----------+-------+
+2 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (444555666, "JK78")
+--------------
+
+Query OK, 1 row affected (0.02 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
++-----------+-------+
+3 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (111222333, "SE66")
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222333 | SE66  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
++-----------+-------+
+4 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (111222333, "JK78")
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
++-----------+-------+
+5 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (333444555, "GD56")
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
++-----------+-------+
+6 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (667766777, "YT67")
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
+| 667766777 | YT67  |
++-----------+-------+
+7 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (667766777, "JK78")
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
+| 667766777 | JK78  |
+| 667766777 | YT67  |
++-----------+-------+
+8 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (667766777, "GD56")
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
+| 667766777 | GD56  |
+| 667766777 | JK78  |
+| 667766777 | YT67  |
++-----------+-------+
+9 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (111222111, "YT67")
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222111 | YT67  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
+| 667766777 | GD56  |
+| 667766777 | JK78  |
+| 667766777 | YT67  |
++-----------+-------+
+10 rows in set (0.00 sec)
+
+--------------
+INSERT INTO doctorpatient VALUES (123456789, "WW55")
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222111 | YT67  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 123456789 | WW55  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
+| 667766777 | GD56  |
+| 667766777 | JK78  |
+| 667766777 | YT67  |
++-----------+-------+
+11 rows in set (0.00 sec)
+
+--------------
+UPDATE doctor SET code = "BBC" WHERE licno = "RD34"
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE doctor SET code = "BBC" WHERE licno = "GD56"
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE doctor SET code = "DDE" WHERE licno = "HT45"
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE doctor SET code = "DDE" WHERE licno = "YT67"
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE doctor SET code = "BBC" WHERE licno = "JK78"
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE doctor SET code = "ABC" WHERE licno = "SE66"
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE doctor SET code = "ABC" WHERE licno = "WW55"
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE hospital SET licno = "GD56", headstart = "1999-09-10" WHERE code = "BBC"
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE hospital SET licno = "YT67", headstart = "1997-12-07" WHERE code = "DDE"
+--------------
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+UPDATE hospital SET licno = "SE66", headstart = "1994-12-05" WHERE code = "ABC"
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+SELECT * FROM doctor
+--------------
+
++-------+-----------+------------+--------------+------------+------+
+| licno | firstname | lastname   | specialty    | licdate    | code |
++-------+-----------+------------+--------------+------------+------+
+| GD56  | Joey      | Shabado    | Podiatrist   | 1960-06-24 | BBC  |
+| HT45  | Ross      | Clooney    | Surgeon      | 1987-06-27 | DDE  |
+| JK78  | Mandy     | Webster    | Surgeon      | 1990-08-08 | BBC  |
+| RD34  | Bernie    | Kavorikian | Urologist    | 1980-09-08 | BBC  |
+| SE66  | Colleen   | Aziz       | Surgeon      | 1989-08-24 | ABC  |
+| WW55  | Ben       | Carson     | Surgeon      | 1977-04-28 | ABC  |
+| YT67  | Ben       | Spock      | Pediatrician | 1955-02-20 | DDE  |
++-------+-----------+------------+--------------+------------+------+
+7 rows in set (0.01 sec)
+
+--------------
+SELECT * FROM hospital
+--------------
+
++------+------------+----------+----------+------+-------+------------+
+| code | name       | city     | province | beds | licno | headstart  |
++------+------------+----------+----------+------+-------+------------+
+| ABC  | Victoria   | London   | On       | 1600 | SE66  | 1994-12-05 |
+| BBC  | St. Joseph | London   | On       | 1000 | GD56  | 1999-09-10 |
+| DDE  | Victoria   | Victoria | BC       | 1200 | YT67  | 1997-12-07 |
++------+------------+----------+----------+------+-------+------------+
+3 rows in set (0.00 sec)
+
+--------------
+UPDATE patient SET lastname = "Brown" WHERE ohtp = 111222111
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------
+SELECT * FROM patient
+--------------
+
++-----------+-----------+----------+
+| ohtp      | firstname | lastname |
++-----------+-----------+----------+
+| 110112113 | Bill      | Gellar   |
+| 111222111 | Suzi      | Brown    |
+| 111222333 | Jon       | Green    |
+| 123456789 | Ben       | Tilden   |
+| 333444555 | Colleen   | Gellar   |
+| 444555666 | Sean      | Gellar   |
+| 667766777 | Scotty    | Bing     |
++-----------+-----------+----------+
+7 rows in set (0.00 sec)
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222111 | YT67  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 123456789 | WW55  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
+| 667766777 | GD56  |
+| 667766777 | JK78  |
+| 667766777 | YT67  |
++-----------+-------+
+11 rows in set (0.00 sec)
+
+--------------
+UPDATE doctorpatient SET licno = (SELECT licno FROM doctor WHERE lastname = "Clooney") WHERE licno = (SELECT licno FROM doctor WHERE lastname = "Spock")
+--------------
+
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+--------------
+SELECT * FROM doctorpatient ORDER BY ohtp ASC
+--------------
+
++-----------+-------+
+| ohtp      | licno |
++-----------+-------+
+| 110112113 | GD56  |
+| 111222111 | HT45  |
+| 111222333 | JK78  |
+| 111222333 | SE66  |
+| 123456789 | WW55  |
+| 333444555 | GD56  |
+| 444555666 | HT45  |
+| 444555666 | JK78  |
+| 667766777 | GD56  |
+| 667766777 | HT45  |
+| 667766777 | JK78  |
++-----------+-------+
+11 rows in set (0.00 sec)
+
+Bye
